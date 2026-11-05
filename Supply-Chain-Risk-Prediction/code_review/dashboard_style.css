@@ -1,0 +1,149 @@
+
+
+/* ── Base Body ── */
+body {
+    background-color: #0A1128; /* Deep Navy */
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Light Mode Override */
+body.light {
+    background-color: #f0f4f8;
+    color: #1a202c;
+}
+
+/* ── Animated Grid Background ── */
+.ai-grid-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -2;
+    background-image: 
+        linear-gradient(to right, rgba(0, 243, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 243, 255, 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+body.light .ai-grid-bg {
+    background-image: 
+        linear-gradient(to right, rgba(22, 66, 91, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(22, 66, 91, 0.25) 1px, transparent 1px);
+}
+
+@keyframes gridMove {
+    0%   { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(50px) translateX(50px); }
+}
+
+/* ── Radial Glow Layer ── */
+.ai-glow {
+    position: fixed;
+    width: 80vw; height: 80vw;
+    background: radial-gradient(circle, rgba(0,243,255,0.08) 0%, rgba(10,17,40,0) 60%);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+body.light .ai-glow {
+    background: radial-gradient(circle, rgba(0,243,255,0.2) 0%, rgba(255,255,255,0) 60%);
+}
+
+@keyframes pulseGlow {
+    0%   { transform: translate(-50%, -50%) scale(1);   opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+/* ── Light Mode Text Fixes ── */
+body.light .text-gray-400,
+body.light .text-gray-300         { color: #4a5568 !important; }
+body.light .text-white            { color: #1a202c !important; }
+body.light .text-cyber-cyan       { color: #008996 !important; }
+body.light .border-glass-border   { border-color: rgba(22, 66, 91, 0.1) !important; }
+body.light .hover\:text-white:hover { color: #000 !important; }
+
+/* ── Glass Panel (Reusable Card Component) ── */
+.glass-panel {
+    background: var(--glass-bg, rgba(10, 17, 40, 0.65));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border-color, rgba(0, 243, 255, 0.15));
+    border-radius: 1.25rem;
+    box-shadow: var(--glass-shadow, 0 8px 32px 0 rgba(0, 0, 0, 0.37));
+    transition: all 0.3s ease;
+}
+
+body.light .glass-panel {
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border-color: rgba(22, 66, 91, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+}
+
+/* ── Input Field ── */
+.input-field {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+body.light .input-field {
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(22, 66, 91, 0.2);
+    color: #1a202c;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #00F3FF;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+/* ── Select Dropdown Background Fix ── */
+.select-field           { background-color: rgba(10, 17, 40, 0.9); }
+body.light .select-field { background-color: #ffffff; }
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 243, 255, 0.3);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 243, 255, 0.6); }
+
+/* ── Supply Chain Simulator Game Grid ── */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+}
+
+.game-cell {
+    aspect-ratio: 1;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+.game-cell:hover     { background: rgba(0, 243, 255, 0.1); }
+.cell-truck          { background: rgba(0, 243, 255, 0.2); box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.5); }
+.cell-obstacle       { background: rgba(255, 0, 60, 0.2);  border-color: rgba(255, 0, 60, 0.3); }
+.cell-target         { background: rgba(0, 255, 157, 0.2); border-color: rgba(0, 255, 157, 0.3); }
+.cell-path           { background: rgba(255, 255, 255, 0.05); }

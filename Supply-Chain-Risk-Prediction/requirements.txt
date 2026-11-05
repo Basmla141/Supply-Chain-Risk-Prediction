@@ -1,0 +1,8 @@
+Django>=5.0,<6.0
+django-allauth[socialaccount]>=0.63
+joblib
+pandas
+numpy
+scikit-learn
+xgboost
+Pillow
